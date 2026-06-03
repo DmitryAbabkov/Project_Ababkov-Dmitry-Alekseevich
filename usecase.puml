@@ -1,0 +1,92 @@
+@startuml usecase
+
+title Диаграмма вариантов использования ИС вуза
+
+left to right direction
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+
+actor "Сотрудник деканата" as Dekanat
+actor "Заведующий кафедрой" as ZavKaf
+actor "Преподаватель" as Teacher
+actor "Студент" as Student
+actor "Администратор\nсистемы" as Admin
+actor "Кадровая\nсистема (HR)" as HR
+actor "Система\nдокументооборота" as DocSystem
+
+rectangle "Информационная система вуза" {
+
+    package "Управление учебным процессом" {
+        usecase "ВИ-01: Сформировать\nучебный план" as UC01
+        usecase "ВИ-02: Выдать учебное\nпоручение кафедре" as UC02
+        usecase "ВИ-03: Зарегистрировать\nрезультаты экзамена" as UC03
+        usecase "ВИ-04: Сформировать отчёт\nоб успеваемости" as UC04
+        usecase "ВИ-05: Управлять\nданными студентов" as UC05
+    }
+
+    package "Управление кафедрой" {
+        usecase "ВИ-06: Распределить\nучебную нагрузку" as UC06
+        usecase "ВИ-07: Назначить руководителя\nдипломной работы" as UC07
+        usecase "ВИ-08: Управлять данными\nпреподавателей" as UC08
+        usecase "ВИ-09: Просмотреть учебное\nпоручение" as UC09
+    }
+
+    package "Функции преподавателя" {
+        usecase "ВИ-10: Просмотреть\nназначенную нагрузку" as UC10
+        usecase "ВИ-11: Выставить оценки\nстудентам" as UC11
+        usecase "ВИ-12: Просмотреть список\nстудентов группы" as UC12
+        usecase "ВИ-13: Управлять\nдипломной работой" as UC13
+    }
+
+    package "Функции студента" {
+        usecase "ВИ-14: Просмотреть\nрасписание" as UC14
+        usecase "ВИ-15: Просмотреть\nуспеваемость" as UC15
+        usecase "ВИ-16: Просмотреть\nучебный план" as UC16
+        usecase "ВИ-17: Просмотреть сведения\nо дипломной работе" as UC17
+    }
+
+    package "Администрирование" {
+        usecase "ВИ-18: Управлять учётными\nзаписями" as UC18
+        usecase "ВИ-19: Управлять\nсправочниками" as UC19
+    }
+
+    package "Интеграция" {
+        usecase "ВИ-20: Импортировать данные\nо сотрудниках" as UC20
+        usecase "ВИ-21: Экспортировать\nдокументы" as UC21
+    }
+}
+
+' Деканат
+Dekanat --> UC01
+Dekanat --> UC02
+Dekanat --> UC03
+Dekanat --> UC04
+Dekanat --> UC05
+
+' Заведующий кафедрой
+ZavKaf --> UC06
+ZavKaf --> UC07
+ZavKaf --> UC08
+ZavKaf --> UC09
+
+' Преподаватель
+Teacher --> UC10
+Teacher --> UC11
+Teacher --> UC12
+Teacher --> UC13
+
+' Студент
+Student --> UC14
+Student --> UC15
+Student --> UC16
+Student --> UC17
+
+' Администратор
+Admin --> UC18
+Admin --> UC19
+
+' Внешние системы
+HR --> UC20
+UC21 --> DocSystem
+
+@enduml
