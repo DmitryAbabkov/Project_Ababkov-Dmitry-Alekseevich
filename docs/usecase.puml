@@ -13,6 +13,7 @@ actor "Студент" as Student
 actor "Администратор\nсистемы" as Admin
 actor "Кадровая\nсистема (HR)" as HR
 actor "Система\nдокументооборота" as DocSystem
+actor "Система составления\nрасписания" as Schedule
 
 rectangle "Информационная система вуза" {
 
@@ -53,6 +54,7 @@ rectangle "Информационная система вуза" {
     package "Интеграция" {
         usecase "ВИ-20: Импортировать данные\nо сотрудниках" as UC20
         usecase "ВИ-21: Экспортировать\nдокументы" as UC21
+        usecase "ВИ-22: Экспортировать данные\nо нагрузке в систему\nрасписания" as UC22
     }
 }
 
@@ -88,5 +90,6 @@ Admin --> UC19
 ' Внешние системы
 HR --> UC20
 UC21 --> DocSystem
+UC22 --> Schedule
 
 @enduml
